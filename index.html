@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SiPAUD Asesmen - Asesmen Formatif PAUD</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="header-top">
+    <div class="brand">
+      <div class="avatar">S</div>
+      <div>
+        <div class="badge">ASESMEN FORMATIF PAUD</div>
+        <div class="chip">Learning by Making</div>
+      </div>
+    </div>
+    <h1 class="app-title">SiPAUD Asesmen</h1>
+    <div class="stats">
+      <span class="stat"><b>5</b> Catatan</span>
+      <span class="stat"><b>1</b> Anak</span>
+      <span class="stat"><b>5/6</b> Aspek</span>
+      <label class="toggle">
+        <input type="checkbox" id="helperMode" checked>
+        <span class="slider"></span>
+        Mode Bantuan Pemula
+      </label>
+    </div>
+  </div>
+
+  <nav class="subnav">
+    <a href="#" class="step-link active" data-step="1">
+      <span class="num">1</span> Catat Observasi
+    </a>
+    <a href="#" class="step-link" data-step="2">
+      <span class="num">2</span> Bank Data &amp; Portofolio
+    </a>
+    <a href="#" class="step-link" data-step="3">
+      <span class="num">3</span> Kamus STPPA &amp; Panduan
+    </a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="info-banner">
+    <span class="banner-icon">&#128161;</span>
+    <div class="banner-text">
+      <strong>Panduan Belajar Bertahap (Learning by Making):</strong> Kutip 7 langkah terstruktur di bawah ini. Anda akan berlatih menulis fakta perikau secara objektif dan menghubungkannya dengan indikator STPPA secara mandiri sebelum meminta umpan balik validasi sistem.
+    </div>
+    <button class="btn-ghost" id="clearBtn">+ Kosongkan Form</button>
+  </section>
+
+  <section id="step1" class="step-card active">
+    <div class="step-header">
+      <span class="step-badge">1</span>
+      <div>
+        <h2>Identitas Anak &amp; Konteks Kegiatan</h2>
+        <p class="step-desc">Lengkapi data dasar pengamatan agar bukti perkembangan mudah ditelusuri saat penyusunan portofolio.</p>
+      </div>
+    </div>
+    <form id="formIdentitas" novalidate>
+      <div class="grid-4">
+        <div class="field">
+          <label>Nama / Inisial Anak <span class="req">*</span></label>
+          <input type="text" id="nama" placeholder="mis. Bintang Aditya Nugraha">
+        </div>
+        <div class="field">
+          <label>Kelompok Usia <span class="req">*</span></label>
+          <select id="usia">
+            <option value="">Pilih kelompok usia</option>
+            <option value="0-2 Tahun">0-2 Tahun (Kelompok A)</option>
+            <option value="2-4 Tahun">2-4 Tahun</option>
+            <option value="4-5 Tahun">4-5 Tahun (Kelompok B)</option>
+            <option value="5-6 Tahun">5-6 Tahun</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tanggal &amp; Jam <span class="req">*</span></label>
+          <input type="datetime-local" id="tanggalJam">
+        </div>
+        <div class="field">
+          <label>Konteks Kegiatan / Sentra <span class="req">*</span></label>
+          <input type="text" id="konteks" placeholder="Pilih atau ketik kegiatan...">
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section id="step2" class="step-card hidden">
+    <div class="step-header">
+      <span class="step-badge">2</span>
+      <div>
+        <h2>Pilih Teknik Asesmen</h2>
+        <p class="step-desc">Klik salah satu teknik di bawah. Formulir pencatatan pada Langkah 3 akan otomatis menyesuaikan struktur teknik yang dipilih.</p>
+      </div>
+      <button class="btn-tips" id="tipsBtn">Tips Pemilihan Teknik</button>
+    </div>
+    <div class="techniques" id="techniques">
+      <article class="tech-card selected" data-tech="anekdot">
+        <span class="tech-tag">ANEKDOT</span>
+        <h3>Momen Singkat &amp; Spontan</h3>
+        <p class="tech-kapan">Kapan: Peristiwa unik/tak terduga yang bermacam.</p>
+        <p class="tech-contoh"><strong>Contoh:</strong> Anak uncoverakan salam &amp; bersalaman tanpa diminta.</p>
+      </article>
+      <article class="tech-card" data-tech="running">
+        <span class="tech-tag">RUNNING RECORD</span>
+        <h3>Proses Kronologis (±10 mnt)</h3>
+        <p class="tech-kapan">Kapan: Memberek proses/binasa bermain secara berurutan.</p>
+        <p class="tech-contoh"><strong>Contoh:</strong> Menit ke menit anak menguji takaran pasir &amp; air.</p>
+      </article>
+      <article class="tech-card" data-tech="checklist">
+        <span class="tech-tag">CHECKLIST</span>
+        <h3>Status Kemunculan</h3>
+        <p class="tech-kapan">Kapan: Memeriksa daftar keterampilan tertentu sekaligus.</p>
+        <p class="tech-contoh"><strong>Contoh:</strong> Ceklis koordinasi lompak &amp; lari zig-zag saat senam.</p>
+      </article>
+      <article class="tech-card" data-tech="unjuk">
+        <span class="tech-tag">UNJUK KERJA</span>
+        <h3>Rubrik BB-MB-BSH-BSB</h3>
+        <p class="tech-kapan">Kapan: Menilai kualitas proses &amp; hasil tugas terstruktur.</p>
+        <p class="tech-contoh"><strong>Contoh:</strong> Menilai kerapian &amp; komposisi warna gambar pemandangan.</p>
+      </article>
+      <article class="tech-card" data-tech="event">
+        <span class="tech-tag">EVENT SAMPLING</span>
+        <h3>Perikau Berulang (ABC)</h3>
+        <p class="tech-kapan">Kapan: Melacak pola pemicu &amp; akibat perilaku menantang.</p>
+        <p class="tech-contoh"><strong>Contoh:</strong> Pola berbutir balok panjang 3x dalam seminggu.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="step3" class="step-card hidden">
+    <div class="step-header">
+      <span class="step-badge">3</span>
+      <div>
+        <h2 id="step3Title">Catatan Butki Observasi (Anekdot)</h2>
+        <p class="step-desc" id="step3Desc">Rekam fakta perikau yang terlihat dan terdengar secara objektif.</p>
+      </div>
+      <button class="btn-tips" id="objektifBtn">Pemeriksa Objektivitas Aktif</button>
+    </div>
+    <form id="formObservasi" novalidate>
+      <div class="field">
+        <label>Catatan Butir Observasi <span class="req">*</span></label>
+        <textarea id="catatan" rows="5" placeholder="Tulis fakta yang terlihat dan terdengar, tanpa penilaian subjektif..."></textarea>
+      </div>
+      <div class="field hints" id="hintsBox" hidden>
+        <label>Saran Struktur</label>
+        <div id="hintsList"></div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-primary" id="simpanBtn">Simpan Data &amp; Buat Rapor</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="rapor" class="step-card hidden no-print">
+    <div class="step-header">
+      <span class="step-badge">4</span>
+      <div>
+        <h2>Rapor Naratif</h2>
+        <p class="step-desc">Laporan observasi siap dicetak.</p>
+      </div>
+    </div>
+    <div class="rapor-card">
+      <div class="rapor-head">
+        <h3>Laporan Observasi Anak</h3>
+        <span class="rapor-meta" id="raporMeta"></span>
+      </div>
+      <div class="rapor-body" id="raporBody"></div>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn-secondary" id="cetakBtn">Cetak Laporan</button>
+      <button type="button" class="btn-ghost" id="baruBtn">Asesmen Baru</button>
+    </div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
