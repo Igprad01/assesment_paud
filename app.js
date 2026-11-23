@@ -310,7 +310,6 @@ function handleSave() {
   saveDraft();
   renderRapor();
   showStep(4);
-  downloadExcel();
 }
 
 function fileStamp() {
