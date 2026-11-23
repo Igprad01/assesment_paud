@@ -85,6 +85,10 @@
         </div>
       </div>
     </form>
+    <div class="step-nav">
+      <button class="btn-secondary prev-step" disabled>Sebelumnya</button>
+      <button class="btn-primary next-step">Selanjutnya</button>
+    </div>
   </section>
 
   <section id="step2" class="step-card hidden">
@@ -128,6 +132,10 @@
         <p class="tech-contoh"><strong>Contoh:</strong> Pola berbutir balok panjang 3x dalam seminggu.</p>
       </article>
     </div>
+    <div class="step-nav">
+      <button class="btn-secondary prev-step">Sebelumnya</button>
+      <button class="btn-primary next-step">Selanjutnya</button>
+    </div>
   </section>
 
   <section id="step3" class="step-card hidden">
@@ -148,13 +156,14 @@
         <label>Saran Struktur</label>
         <div id="hintsList"></div>
       </div>
-      <div class="actions">
-        <button type="button" class="btn-primary" id="simpanBtn">Simpan Data &amp; Buat Rapor</button>
-      </div>
     </form>
+    <div class="step-nav">
+      <button class="btn-secondary prev-step">Sebelumnya</button>
+      <button class="btn-primary next-step">Simpan &amp; Unduh Laporan</button>
+    </div>
   </section>
 
-  <section id="rapor" class="step-card hidden no-print">
+  <section id="step4" class="step-card hidden">
     <div class="step-header">
       <span class="step-badge">4</span>
       <div>
@@ -169,9 +178,11 @@
       </div>
       <div class="rapor-body" id="raporBody"></div>
     </div>
-    <div class="actions">
-      <button type="button" class="btn-secondary" id="cetakBtn">Cetak Laporan</button>
-      <button type="button" class="btn-ghost" id="baruBtn">Asesmen Baru</button>
+    <div class="step-nav">
+      <button class="btn-secondary prev-step">Sebelumnya</button>
+      <button class="btn-secondary" id="excelBtn">Unduh Excel</button>
+      <button class="btn-secondary" id="cetakBtn">Cetak / Simpan PDF</button>
+      <button class="btn-primary" id="baruBtn">Asesmen Baru</button>
     </div>
   </section>
 </main>

@@ -1,92 +1,92 @@
-const STORAGE_KEY = 'paud_asesmen_v1';
-
-const MOMEN = {
-  'Nilai Agama dan Moral': [
-    'Mengucap doa sebelum kegiatan',
-    'Menghormati orang tua dan guru',
-    'Berbagi makanan dengan teman',
-    'Merapikan mainan setelah digunakan'
-  ],
-  'Fisik-Motorik': [
-    'Melompat dengan dua kaki',
-    'Berlari tanpa jatuh',
-    'Menangkap bola dengan kedua tangan',
-    'Menaiki tangga dengan kaki bergantian'
-  ],
-  Kognitif: [
-    'Mengenal warna dasar',
-    'Mengurutkan angka 1 sampai 10',
-    'Menyelesaikan puzzle sederhana',
-    'Mengelompokkan bentuk geometri'
-  ],
-  Bahasa: [
-    'Bercerita dengan lancar',
-    'Menyanyikan lagu sederhana',
-    'Mengikuti instruksi guru',
-    'Menyebut nama benda di sekitar'
-  ],
-  'Sosial-Emosional': [
-    'Berkemitra dengan teman',
-    'Mengemukan perasaan dengan kata',
-    'Menunggu giliran bermain',
-    'Bersedia membantu teman'
-  ],
-  Seni: [
-    'Menggambar bebas dengan kreatif',
-    'Membuat karya dari bahan bekas',
-    'Menari mengikuti irama musik',
-    'Mewarnai dalam garis'
-  ]
-};
+const STORAGE_KEY = 'sipaud_asesmen_v1';
 
 const state = {
   step: 1,
-  usia: '',
-  aspek: '',
-  momen: [],
   nama: '',
-  tanggal: '',
-  jam: '',
+  usia: '',
+  tanggalJam: '',
   konteks: '',
-  catatan: '',
-  objektif: '',
-  skala: '',
-  tindakLanjut: ''
+  teknik: 'anekdot',
+  catatan: ''
+};
+
+const TECHNIKS = {
+  anekdot: {
+    label: 'Anekdot',
+    title: 'Catatan Butki Observasi (Anekdot)',
+    desc: 'Rekam fakta perikau yang terlihat dan terdengar secara objektif.',
+    hints: [
+      'Tulis apa yang terlihat dan terdengar, tanpa penilaian.',
+      'Sertakan waktu, tempat, dan siapa yang terlibat.',
+      'Hindari kata subjektif seperti "nakal" atau "pintar".'
+    ]
+  },
+  running: {
+    label: 'Running Record',
+    title: 'Catatan Kronologis (Running Record)',
+    desc: 'Catat urutan perikau dari awal hingga akhir dalam rentang waktu tertentu.',
+    hints: [
+      'Catat jam mulai dan selesai observasi.',
+      'Urutkan perikau berdasarkan waktu kejadian.',
+      'Sertakan respons anak terhadap stimuli.'
+    ]
+  },
+  checklist: {
+    label: 'Checklist',
+    title: 'Daftar Periksa Kemampuan (Checklist)',
+    desc: 'Tandai apakah anak telah menunjukkan keterampilan tertentu.',
+    hints: [
+      'Siapkan daftar indikator yang diamati.',
+      'Tandai "Ya" atau "Tidak" untuk setiap indikator.',
+      'Catat bukti pendukung jika diperlukan.'
+    ]
+  },
+  unjuk: {
+    label: 'Unjuk Kerja',
+    title: 'Penilaian Unjuk Kerja',
+    desc: 'Nilai kualitas hasil karya atau tugas anak dengan rubrik.',
+    hints: [
+      'Tentukan kriteria penilaian sebelum mulai.',
+      'Gunakan skala BB-MB-BSH-BSB.',
+      'Catat komentar spesifik terhadap hasil karya.'
+    ]
+  },
+  event: {
+    label: 'Event Sampling',
+    title: 'Pencatatan Peristiwa (Event Sampling)',
+    desc: 'Catat pola perilaku yang muncul berulang kali.',
+    hints: [
+      'Definisikan perilaku target yang akan dicatat.',
+      'Catat pemicu (Antecedent) dan akibat (Consequence).',
+      'Catat frekuensi dan waktu kejadian.'
+    ]
+  }
 };
 
 const els = {
-  progressItems: document.querySelectorAll('.progress-item'),
-  steps: document.querySelectorAll('.step'),
-  prevBtn: document.getElementById('prevBtn'),
-  nextBtn: document.getElementById('nextBtn'),
-  saveBtn: document.getElementById('saveBtn'),
-  printBtn: document.getElementById('printBtn'),
-  summary: document.getElementById('summary'),
-  raporOutput: document.getElementById('raporOutput'),
-  raporText: document.getElementById('raporText'),
-  momenGroup: document.getElementById('momenGroup'),
-  momenHint: document.getElementById('momenHint'),
+  progressLinks: document.querySelectorAll('.step-link'),
+  stepCards: document.querySelectorAll('.step-card'),
+  clearBtn: document.getElementById('clearBtn'),
+  tipsBtn: document.getElementById('tipsBtn'),
+  objektifBtn: document.getElementById('objektifBtn'),
+  raporOutput: document.getElementById('step4'),
+  raporBody: document.getElementById('raporBody'),
+  raporMeta: document.getElementById('raporMeta'),
+  excelBtn: document.getElementById('excelBtn'),
+  step3Title: document.getElementById('step3Title'),
+  step3Desc: document.getElementById('step3Desc'),
+  hintsBox: document.getElementById('hintsBox'),
+  hintsList: document.getElementById('hintsList'),
+  cetakBtn: document.getElementById('cetakBtn'),
+  baruBtn: document.getElementById('baruBtn'),
   inputs: {
-    usia: document.getElementById('usia'),
-    aspek: document.getElementById('aspek'),
     nama: document.getElementById('nama'),
-    tanggal: document.getElementById('tanggal'),
-    jam: document.getElementById('jam'),
+    usia: document.getElementById('usia'),
+    tanggalJam: document.getElementById('tanggalJam'),
     konteks: document.getElementById('konteks'),
-    catatan: document.getElementById('catatan'),
-    objektif: document.getElementsByName('objektif'),
-    skala: document.getElementsByName('skala'),
-    tindakLanjut: document.getElementById('tindakLanjut')
+    catatan: document.getElementById('catatan')
   }
 };
-
-function saveDraft() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch (e) {
-    console.warn('Gagal menyimpan draft ke localStorage:', e);
-  }
-}
 
 function loadDraft() {
   try {
@@ -95,132 +95,179 @@ function loadDraft() {
     const data = JSON.parse(raw);
     Object.assign(state, data);
   } catch (e) {
-    console.warn('Gagal memuat draft dari localStorage:', e);
+    console.warn('Gagal memuat draft:', e);
+  }
+}
+
+function saveDraft() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {
+    console.warn('Gagal menyimpan draft:', e);
   }
 }
 
 function applyStateToUI() {
-  els.inputs.usia.value = state.usia || '';
-  els.inputs.aspek.value = state.aspek || '';
-  renderMomen(state.aspek);
-  if (state.momen && state.momen.length) {
-    state.momen.forEach((val) => {
-      const input = els.momenGroup.querySelector(`input[value="${escapeAttr(val)}"]`);
-      if (input) input.checked = true;
-    });
-  }
   els.inputs.nama.value = state.nama || '';
-  els.inputs.tanggal.value = state.tanggal || '';
-  els.inputs.jam.value = state.jam || '';
+  els.inputs.usia.value = state.usia || '';
+  els.inputs.tanggalJam.value = state.tanggalJam || '';
   els.inputs.konteks.value = state.konteks || '';
   els.inputs.catatan.value = state.catatan || '';
-  setRadioChecked(els.inputs.objektif, state.objektif);
-  setRadioChecked(els.inputs.skala, state.skala);
-  els.inputs.tindakLanjut.value = state.tindakLanjut || '';
+  selectTechnik(state.teknik);
+  showStep(state.step);
 }
 
-function setRadioChecked(radios, value) {
-  for (const radio of radios) {
-    radio.checked = radio.value === value;
-  }
+function selectTechnik(key) {
+  state.teknik = key;
+  const tech = TECHNIKS[key];
+  document.querySelectorAll('.tech-card').forEach(card => {
+    card.classList.toggle('selected', card.dataset.tech === key);
+  });
+  els.step3Title.textContent = tech.title;
+  els.step3Desc.textContent = tech.desc;
+  renderHints(tech.hints);
 }
 
-function renderMomen(aspek) {
-  els.momenGroup.innerHTML = '';
-  const items = MOMEN[aspek] || [];
-  if (!items.length) {
-    els.momenHint.textContent = 'Pilih aspek STPPA untuk melihat momen belajar.';
-    return;
-  }
-  els.momenHint.textContent = 'Pilih satu atau lebih momen belajar yang teramati.';
-  items.forEach((text) => {
-    const label = document.createElement('label');
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-    input.name = 'momen';
-    input.value = text;
-    label.appendChild(input);
-    label.appendChild(document.createTextNode(text));
-    els.momenGroup.appendChild(label);
+function renderHints(hints) {
+  els.hintsList.innerHTML = hints.map(h => `<li>${h}</li>`).join('');
+}
+
+function showStep(n) {
+  state.step = Math.min(Math.max(n, 1), 4);
+  els.stepCards.forEach(card => {
+    card.classList.toggle('active', card.id === `step${state.step}`);
+    card.classList.toggle('hidden', card.id !== `step${state.step}`);
+  });
+  els.progressLinks.forEach(link => {
+    const num = Number(link.dataset.step);
+    link.classList.toggle('active', num === state.step);
+    link.classList.toggle('done', num < state.step);
+  });
+
+  updateNavButtons();
+  saveDraft();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateNavButtons() {
+  const isFirst = state.step === 1;
+  const isLast = state.step === 4;
+
+  document.querySelectorAll('.prev-step').forEach(btn => {
+    btn.disabled = isFirst;
+  });
+
+  document.querySelectorAll('.next-step').forEach(btn => {
+    btn.hidden = isLast;
+    btn.textContent = state.step === 3
+      ? 'Simpan & Unduh Laporan'
+      : 'Selanjutnya';
   });
 }
 
 function readForm() {
-  const checkedMomen = [];
-  for (const input of els.momenGroup.querySelectorAll('input:checked')) {
-    checkedMomen.push(input.value);
-  }
-
   return {
     step: state.step,
-    usia: els.inputs.usia.value.trim(),
-    aspek: els.inputs.aspek.value.trim(),
-    momen: checkedMomen,
     nama: els.inputs.nama.value.trim(),
-    tanggal: els.inputs.tanggal.value.trim(),
-    jam: els.inputs.jam.value.trim(),
+    usia: els.inputs.usia.value.trim(),
+    tanggalJam: els.inputs.tanggalJam.value.trim(),
     konteks: els.inputs.konteks.value.trim(),
-    catatan: els.inputs.catatan.value.trim(),
-    objektif: getCheckedValue(els.inputs.objektif),
-    skala: getCheckedValue(els.inputs.skala),
-    tindakLanjut: els.inputs.tindakLanjut.value.trim()
+    teknik: state.teknik,
+    catatan: els.inputs.catatan.value.trim()
   };
 }
 
-function getCheckedValue(radios) {
-  for (const radio of radios) {
-    if (radio.checked) return radio.value;
-  }
-  return '';
-}
-
-function showStep(n) {
-  state.step = Math.min(Math.max(n, 1), 8);
-  els.steps.forEach((section, i) => {
-    section.classList.toggle('active', i + 1 === state.step);
+function bindInputs() {
+  const inputs = [
+    els.inputs.nama,
+    els.inputs.usia,
+    els.inputs.tanggalJam,
+    els.inputs.konteks,
+    els.inputs.catatan
+  ];
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      Object.assign(state, readForm());
+      saveDraft();
+    });
   });
-  els.progressItems.forEach((item, i) => {
-    item.classList.toggle('current', i + 1 === state.step);
+
+  document.querySelectorAll('.tech-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectTechnik(card.dataset.tech);
+      Object.assign(state, readForm());
+      saveDraft();
+    });
   });
 
-  const first = state.step === 1;
-  const last = state.step === 8;
-  els.prevBtn.disabled = first;
-  els.nextBtn.hidden = last;
-  els.nextBtn.textContent = last ? 'Selesai' : 'Selanjutnya';
+  els.clearBtn.addEventListener('click', () => {
+    if (!confirm('Kosongkan semua data form?')) return;
+    state.nama = '';
+    state.usia = '';
+    state.tanggalJam = '';
+    state.konteks = '';
+    state.catatan = '';
+    applyStateToUI();
+  });
 
-  if (last) renderSummary();
+  els.tipsBtn.addEventListener('click', () => {
+    els.hintsBox.hidden = !els.hintsBox.hidden;
+  });
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  saveDraft();
-}
+  els.objektifBtn.addEventListener('click', () => {
+    alert('Pemeriksa objektivitas: Pastikan catatan hanya berisi fakta yang terlihat dan terdengar, tanpa interpretasi atau label subjektif.');
+  });
 
-function validateStep(n) {
-  const f = readForm();
-  switch (n) {
-    case 1:
-      return f.usia ? '' : 'Pilih kelompok usia anak terlebih dahulu.';
-    case 2:
-      if (!f.aspek) return 'Pilih aspek STPPA.';
-      if (!f.momen.length) return 'Pilih setidaknya satu momen belajar.';
-      return '';
-    case 3:
-      if (!f.nama) return 'Isi nama anak (inisial).';
-      if (!f.tanggal) return 'Isi tanggal pengamatan.';
-      return '';
-    case 4:
-      if (!f.konteks) return 'Isi konteks kegiatan.';
-      if (!f.catatan) return 'Isi catatan perilaku.';
-      return '';
-    case 5:
-      return f.objektif ? '' : 'Pilih hasil uji objektivitas (Ya / Tidak).';
-    case 6:
-      return f.skala ? '' : 'Pilih skala penilaian.';
-    case 7:
-      return f.tindakLanjut ? '' : 'Isi rencana tindak lanjut pedagogis.';
-    default:
-      return '';
-  }
+  document.querySelectorAll('.prev-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (state.step > 1) {
+        Object.assign(state, readForm());
+        saveDraft();
+        showStep(state.step - 1);
+      }
+    });
+  });
+
+  document.querySelectorAll('.next-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (state.step === 3) {
+        handleSave();
+      } else if (state.step < 4) {
+        goNext();
+      }
+    });
+  });
+
+  els.excelBtn.addEventListener('click', () => {
+    Object.assign(state, readForm());
+    downloadExcel();
+  });
+
+  els.cetakBtn.addEventListener('click', () => {
+    window.print();
+  });
+
+  els.baruBtn.addEventListener('click', () => {
+    state.nama = '';
+    state.usia = '';
+    state.tanggalJam = '';
+    state.konteks = '';
+    state.catatan = '';
+    state.teknik = 'anekdot';
+    saveDraft();
+    applyStateToUI();
+    showStep(1);
+  });
+
+  els.progressLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = Number(link.dataset.step);
+      if (target <= state.step || target === 1) {
+        showStep(target);
+      }
+    });
+  });
 }
 
 function goNext() {
@@ -231,62 +278,100 @@ function goNext() {
   }
   Object.assign(state, readForm());
   saveDraft();
-  if (state.step < 8) showStep(state.step + 1);
+  showStep(state.step + 1);
 }
 
-function goPrev() {
-  if (state.step > 1) {
-    Object.assign(state, readForm());
-    saveDraft();
-    showStep(state.step - 1);
+function validateStep(n) {
+  const f = readForm();
+  switch (n) {
+    case 1:
+      return f.nama ? '' : 'Isi nama / inisial anak.';
+    case 2:
+      if (!f.usia) return 'Pilih kelompok usia.';
+      if (!f.teknik) return 'Pilih teknik asesmen.';
+      return '';
+    case 3:
+      if (!f.konteks) return 'Isi konteks kegiatan.';
+      if (!f.catatan) return 'Isi catatan butir observasi.';
+      return '';
+    default:
+      return '';
   }
 }
 
-function renderSummary() {
-  const f = readForm();
-  const skalaLabel = {
-    BB: 'Belum Berkembang',
-    MB: 'Mulai Berkembang',
-    BSH: 'Berkembang Sesuai Harapan',
-    BSB: 'Berkembang Sangat Baik'
-  }[f.skala] || f.skala;
-
-  const html = `
-    <dl>
-      <dt>Nama Anak</dt><dd>${escapeHtml(f.nama || '-')}</dd>
-      <dt>Semester / Tanggal</dt><dd>${escapeHtml(f.tanggal || '-')}${f.jam ? ' pukul ' + escapeHtml(f.jam) : ''}</dd>
-      <dt>Kelompok Usia</dt><dd>${escapeHtml(f.usia || '-')}</dd>
-      <dt>Aspek STPPA</dt><dd>${escapeHtml(f.aspek || '-')}</dd>
-      <dt>Indikator / Momen Belajar</dt><dd>${escapeHtml(f.momen.join(', ') || '-')}</dd>
-      <dt>Konteks Kegiatan</dt><dd>${escapeHtml(f.konteks || '-')}</dd>
-      <dt>Catatan Perilaku</dt><dd>${escapeHtml(f.catatan || '-')}</dd>
-      <dt>Uji Objektivitas</dt><dd>${escapeHtml(f.objektif || '-')}</dd>
-      <dt>Skala Penilaian</dt><dd>${escapeHtml(f.skala || '-')} &mdash; ${escapeHtml(skalaLabel)}</dd>
-      <dt>Tindak Lanjut Pedagogis</dt><dd>${escapeHtml(f.tindakLanjut || '-')}</dd>
-    </dl>
-  `;
-  els.summary.innerHTML = html;
+function handleSave() {
+  const error = validateStep(3);
+  if (error) {
+    alert(error);
+    showStep(3);
+    return;
+  }
+  Object.assign(state, readForm());
+  saveDraft();
+  renderRapor();
+  showStep(4);
+  downloadExcel();
 }
 
-function generateRapor() {
-  const f = readForm();
-  const skalaLabel = {
-    BB: 'Belum Berkembang',
-    MB: 'Mulai Berkembang',
-    BSH: 'Berkembang Sesuai Harapan',
-    BSB: 'Berkembang Sangat Baik'
-  }[f.skala] || f.skala;
+function fileStamp() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+}
 
-  return `
-    <p><strong>Nama Anak:</strong> ${escapeHtml(f.nama || '-')}</p>
-    <p><strong>Tanggal / Jam:</strong> ${escapeHtml(f.tanggal || '-')}${f.jam ? ' pukul ' + escapeHtml(f.jam) : ''}</p>
-    <p><strong>Kelompok Usia:</strong> ${escapeHtml(f.usia || '-')}</p>
-    <p><strong>Aspek STPPA:</strong> ${escapeHtml(f.aspek || '-')}</p>
-    <p><strong>Indikator / Momen Belajar:</strong> ${escapeHtml(f.momen.join(', ') || '-')}</p>
-    <p><strong>Konteks Kegiatan:</strong> ${escapeHtml(f.konteks || '-')}</p>
-    <p><strong>Skala Penilaian:</strong> ${escapeHtml(f.skala || '-')} &mdash; ${escapeHtml(skalaLabel)}</p>
-    <p><strong>Catatan Perilaku:</strong> ${escapeHtml(f.catatan || '-')}</p>
-    <p><strong>Tindak Lanjut Pedagogis:</strong> ${escapeHtml(f.tindakLanjut || '-')}</p>
+function safeName(text) {
+  return (text || 'asesmen').replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '');
+}
+
+function downloadExcel() {
+  const tech = TECHNIKS[state.teknik];
+  const tgl = state.tanggalJam ? new Date(state.tanggalJam).toLocaleString('id-ID', {
+    day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+  }) : '-';
+
+  const rows = [
+    ['Nama Anak', state.nama],
+    ['Kelompok Usia', state.usia],
+    ['Tanggal & Jam', tgl],
+    ['Konteks Kegiatan / Sentra', state.konteks],
+    ['Teknik Asesmen', tech.label],
+    ['Catatan Observasi', state.catatan]
+  ];
+
+  const table = rows.map(([k, v]) =>
+    `<tr><td><b>${escapeHtml(k)}</b></td><td>${escapeHtml(v || '-').replace(/\n/g, '<br>')}</td></tr>`
+  ).join('');
+
+  const html = `<html xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8"></head><body><table border="1">${table}</table></body></html>`;
+
+  const blob = new Blob(['\ufeff', html], { type: 'application/vnd.ms-excel;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `rapor_${safeName(state.nama)}_${fileStamp()}.xls`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function renderRapor() {
+  const tech = TECHNIKS[state.teknik];
+  const tgl = state.tanggalJam ? new Date(state.tanggalJam).toLocaleString('id-ID', {
+    day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+  }) : '-';
+
+  els.raporMeta.textContent = `${state.nama} · ${state.usia} · ${tgl} · Teknik: ${tech.label}`;
+
+  els.raporBody.innerHTML = `
+    <p><strong>Nama Anak:</strong> ${escapeHtml(state.nama)}</p>
+    <p><strong>Kelompok Usia:</strong> ${escapeHtml(state.usia)}</p>
+    <p><strong>Tanggal &amp; Jam:</strong> ${escapeHtml(tgl)}</p>
+    <p><strong>Konteks Kegiatan / Sentra:</strong> ${escapeHtml(state.konteks)}</p>
+    <p><strong>Teknik Asesmen:</strong> ${escapeHtml(tech.label)}</p>
+    <p><strong>Catatan Observasi:</strong></p>
+    <p>${escapeHtml(state.catatan).replace(/\n/g, '<br>')}</p>
+    <hr style="border:none; border-top:1px solid var(--line); margin:20px 0;">
+    <p style="font-size:0.85rem; color:var(--muted);">Dibuat dengan SiPAUD Asesmen &mdash; Asesmen Formatif PAUD.</p>
   `;
 }
 
@@ -296,82 +381,10 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-function escapeAttr(text) {
-  return String(text).replace(/"/g, '&quot;');
-}
-
-function bindInputs() {
-  const inputs = [
-    els.inputs.usia,
-    els.inputs.aspek,
-    els.inputs.nama,
-    els.inputs.tanggal,
-    els.inputs.jam,
-    els.inputs.konteks,
-    els.inputs.catatan,
-    els.inputs.tindakLanjut
-  ];
-
-  inputs.forEach((input) => {
-    input.addEventListener('input', () => {
-      Object.assign(state, readForm());
-      saveDraft();
-    });
-  });
-
-  els.inputs.aspek.addEventListener('change', () => {
-    renderMomen(els.inputs.aspek.value);
-    Object.assign(state, readForm());
-    saveDraft();
-  });
-
-  els.momenGroup.addEventListener('change', () => {
-    Object.assign(state, readForm());
-    saveDraft();
-  });
-
-  for (const radio of els.inputs.objektif) {
-    radio.addEventListener('change', () => {
-      Object.assign(state, readForm());
-      saveDraft();
-    });
-  }
-
-  for (const radio of els.inputs.skala) {
-    radio.addEventListener('change', () => {
-      Object.assign(state, readForm());
-      saveDraft();
-    });
-  }
-}
-
 function init() {
   loadDraft();
   applyStateToUI();
   bindInputs();
-  showStep(1);
-
-  els.prevBtn.addEventListener('click', goPrev);
-  els.nextBtn.addEventListener('click', goNext);
-
-  els.saveBtn.addEventListener('click', () => {
-    const error = validateStep(8);
-    if (error) {
-      alert(error);
-      showStep(Math.min(state.step, 7));
-      return;
-    }
-    Object.assign(state, readForm());
-    saveDraft();
-    renderSummary();
-    els.raporText.innerHTML = generateRapor();
-    els.raporOutput.hidden = false;
-    els.raporOutput.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  els.printBtn.addEventListener('click', () => {
-    window.print();
-  });
 }
 
 document.addEventListener('DOMContentLoaded', init);
