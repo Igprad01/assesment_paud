@@ -101,26 +101,20 @@
             </div>
           </div>
           <div class="planning">
-            <h3 class="sub-title">CP, TP &amp; Indikator STPPA</h3>
-            <div class="grid-3">
-              <div class="field">
-                <label for="aspek">Aspek STPPA</label>
-                <select id="aspek">
-                  <option value="">Pilih aspek</option>
-                  <option value="Nilai Agama dan Moral">
-                    Nilai Agama dan Moral
-                  </option>
-                  <option value="Fisik-Motorik">Fisik-Motorik</option>
-                  <option value="Kognitif">Kognitif</option>
-                  <option value="Bahasa">Bahasa</option>
-                  <option value="Sosial-Emosional">Sosial-Emosional</option>
-                  <option value="Seni">Seni</option>
-                </select>
-              </div>
+            <h3 class="sub-title">CP, TP, ATP &amp; Indikator STPPA</h3>
+            <div class="grid-2">
               <div class="field">
                 <label for="cp">Capaian Pembelajaran (CP)</label>
                 <select id="cp">
                   <option value="">Pilih Capaian Pembelajaran (CP)</option>
+                  <option value="Nilai Agama dan Budi Pekerti (Mengenal Tuhan, Ibadah &amp; Akhlak Mulia)">1. Nilai Agama &amp; Budi Pekerti: Mengenal Tuhan, Ibadah &amp; Akhlak Mulia</option>
+                  <option value="Nilai Agama dan Budi Pekerti (Menyayangi Sesama, Alam &amp; Menjaga Kebersihan)">2. Nilai Agama &amp; Budi Pekerti: Menyayangi Sesama, Alam &amp; Kebersihan</option>
+                  <option value="Jati Diri (Mengenali Emosi, Kemandirian &amp; Sosialisasi)">3. Jati Diri: Mengenali Emosi, Kemandirian &amp; Sosialisasi</option>
+                  <option value="Jati Diri (Fungsi Gerak, Motorik Kasar, Halus &amp; Kesehatan)">4. Jati Diri: Fungsi Gerak, Motorik Kasar, Halus &amp; Kesehatan</option>
+                  <option value="Dasar Literasi &amp; STEAM (Komunikasi Lisan, Menyimak &amp; Keaksaraan Awal)">5. Dasar Literasi &amp; STEAM: Komunikasi Lisan &amp; Keaksaraan Awal</option>
+                  <option value="Dasar Literasi &amp; STEAM (Matematika Awal, Pola, Sains &amp; Pemecahan Masalah)">6. Dasar Literasi &amp; STEAM: Matematika Awal, Pola, Sains &amp; Pemecahan Masalah</option>
+                  <option value="Dasar Literasi &amp; STEAM (Teknologi, Rekayasa &amp; Ekspresi Seni Kreatif)">7. Dasar Literasi &amp; STEAM: Teknologi, Rekayasa &amp; Ekspresi Seni</option>
+                  <option value="__custom">Lainnya (tulis sendiri)...</option>
                 </select>
                 <input
                   type="text"
@@ -133,6 +127,19 @@
                 <label for="tp">Tujuan Pembelajaran (TP)</label>
                 <select id="tp">
                   <option value="">Pilih Tujuan Pembelajaran (TP)</option>
+                  <option value="Anak mengenal dan mempraktikkan nilai kebaikan serta ibadah harian">Anak mengenal &amp; mempraktikkan ibadah/kebaikan</option>
+                  <option value="Anak menunjukkan rasa syukur, jujur, dan perilaku santun kepada sesama">Anak bersyukur, jujur &amp; santun kepada sesama</option>
+                  <option value="Anak mampu menjaga kebersihan diri dan merawat lingkungan sekitar">Anak menjaga kebersihan diri &amp; lingkungan</option>
+                  <option value="Anak mampu mengenali dan mengelola emosi secara wajar">Anak mampu mengenali &amp; mengelola emosi</option>
+                  <option value="Anak menunjukkan kemandirian dan tanggung jawab dalam aktivitas">Anak menunjukkan kemandirian &amp; tanggung jawab</option>
+                  <option value="Anak mampu bekerja sama, berbagi, dan menunggu giliran dengan teman">Anak bekerja sama, berbagi &amp; antre</option>
+                  <option value="Anak terampil menggunakan motorik kasar dan halus secara seimbang">Anak terampil motorik kasar &amp; halus</option>
+                  <option value="Anak mampu berkomunikasi lisan dan memahami informasi sederhana">Anak mampu berkomunikasi lisan &amp; keaksaraan awal</option>
+                  <option value="Anak menunjukkan minat membaca buku dan mengekspresikan ide melalui coretan/tulisan">Anak gemar membaca &amp; berekspresi lewat coretan</option>
+                  <option value="Anak mengenal konsep bilangan, pola, ukuran, dan bentuk geometri sederhana">Anak mengenal bilangan, pola &amp; bentuk geometri</option>
+                  <option value="Anak mampu berpikir logis, kreatif, dan memecahkan masalah">Anak berpikir logis, kreatif &amp; pecahkan masalah</option>
+                  <option value="Anak mengeksplorasi alam, sains sederhana, dan berkarya seni secara kreatif">Anak eksplorasi sains sederhana &amp; berkarya seni</option>
+                  <option value="__custom">Lainnya (tulis sendiri)...</option>
                 </select>
                 <input
                   type="text"
@@ -141,14 +148,45 @@
                   hidden
                 />
               </div>
-            </div>
-            <div class="field">
-              <label for="indikator">Indikator STPPA</label>
-              <input
-                type="text"
-                id="indikator"
-                placeholder="Tulis indikator yang terukur, mis. melompat dengan dua kaki secara seimbang"
-              />
+              <div class="field">
+                <label for="atp">Alur Tujuan Pembelajaran (ATP)</label>
+                <select id="atp">
+                  <option value="">Pilih Alur Tujuan Pembelajaran (ATP)</option>
+                  <option value="ATP NAM 1: Mengenal Tuhan, Ibadah Harian, dan Akhlak Mulia">ATP NAM 1: Mengenal Tuhan, Ibadah Harian, dan Akhlak Mulia</option>
+                  <option value="ATP NAM 2: Menyayangi Sesama, Merawat Alam, dan Menjaga Kebersihan">ATP NAM 2: Menyayangi Sesama, Merawat Alam, dan Menjaga Kebersihan</option>
+                  <option value="ATP Jati Diri 1: Mengenali Emosi, Kemandirian, dan Sosialisasi">ATP Jati Diri 1: Mengenali Emosi, Kemandirian, dan Sosialisasi</option>
+                  <option value="ATP Jati Diri 2: Gerak Dasar, Motorik Kasar &amp; Halus, dan Menjaga Kesehatan">ATP Jati Diri 2: Gerak Dasar, Motorik Kasar &amp; Halus, dan Menjaga Kesehatan</option>
+                  <option value="ATP Literasi 1: Menyimak, Berbicara, dan Keaksaraan Awal">ATP Literasi 1: Menyimak, Berbicara, dan Keaksaraan Awal</option>
+                  <option value="ATP Literasi 2: Konsep Bilangan, Pola &amp; Bentuk, Sains, dan Pemecahan Masalah">ATP Literasi 2: Konsep Bilangan, Pola &amp; Bentuk, Sains, dan Pemecahan Masalah</option>
+                  <option value="ATP STEAM 3: Teknologi Sederhana, Rekayasa, dan Ekspresi Seni Kreatif">ATP STEAM 3: Teknologi Sederhana, Rekayasa, dan Ekspresi Seni Kreatif</option>
+                  <option value="__custom">Lainnya (tulis sendiri)...</option>
+                </select>
+                <input
+                  type="text"
+                  id="atpManual"
+                  placeholder="Tulis ATP sendiri..."
+                  hidden
+                />
+              </div>
+              <div class="field">
+                <label for="sttpa">Indikator STPPA</label>
+                <select id="sttpa">
+                  <option value="">Pilih Indikator STPPA</option>
+                  <option value="Nilai Agama &amp; Moral: Mengucap syukur, berdoa, dan bersikap jujur">Nilai Agama &amp; Moral (Berdoa, Jujur, Santun)</option>
+                  <option value="Fisik Motorik: Koordinasi tangan-mata, keseimbangan, dan ketangkasan">Fisik Motorik (Koordinasi, Keseimbangan, Halus)</option>
+                  <option value="Kognitif: Mengelompokkan, pola, sebab-akibat, dan pemecahan masalah">Kognitif (Pola, Sebab-Akibat, Pemecahan Masalah)</option>
+                  <option value="Bahasa: Menyimak, menjawab pertanyaan, dan menceritakan kembali">Bahasa (Menyimak, Bercerita, Kosakata)</option>
+                  <option value="Sosial Emosional: Sabar menunggu giliran, berbagi, dan empati">Sosial Emosional (Antre, Berbagi, Empati)</option>
+                  <option value="Seni: Mengekspresikan imajinasi melalui karya rupa, musik, atau gerak">Seni (Karya Rupa, Musik, Gerak)</option>
+                  <option value="__custom">Lainnya (tulis sendiri)...</option>
+                </select>
+                <input
+                  type="text"
+                  id="sttpaManual"
+                  placeholder="Tulis indikator STPPA sendiri..."
+                  hidden
+                />
+              </div>
             </div>
           </div>
         </form>
