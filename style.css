@@ -424,6 +424,32 @@ textarea {
   padding: 16px 24px 24px;
 }
 
+.planning {
+  padding: 4px 24px 24px;
+  border-top: 1px dashed var(--line);
+}
+
+.sub-title {
+  margin: 0 0 14px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.planning .field:last-child {
+  margin-bottom: 0;
+}
+
+.planning input[type="text"] {
+  margin-top: 8px;
+}
+
 .techniques {
   padding: 16px 24px 24px;
   display: grid;

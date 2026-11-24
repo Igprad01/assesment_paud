@@ -6,6 +6,10 @@ const state = {
   usia: '',
   tanggalJam: '',
   konteks: '',
+  aspek: '',
+  cp: '',
+  tp: '',
+  indikator: '',
   teknik: 'anekdot',
   catatan: ''
 };
@@ -63,6 +67,153 @@ const TECHNIKS = {
   }
 };
 
+const PLANNING = {
+  'Nilai Agama dan Moral': {
+    cp: [
+      'Anak mengenal dan meyakini Tuhan Yang Maha Esa melalui ciptaan-Nya',
+      'Anak mengenal dan mempraktikkan ajaran agama yang dianutnya dalam kehidupan sehari-hari',
+      'Anak terbiasa berperilaku santun dan menghargai orang lain',
+      'Anak menunjukkan sikap jujur, disiplin, dan tanggung jawab',
+      'Anak mengenal dan menghargai keberagaman budaya dan agama di sekitarnya',
+      'Anak membiasakan mengucap syukur atas karunia Tuhan',
+      'Anak menunjukkan sikap peduli dan suka menolong sesama',
+      'Anak mengenal nilai-nilai kebaikan melalui cerita dan lagu'
+    ],
+    tp: [
+      'Mengucapkan doa sebelum dan sesudah kegiatan dengan tertib',
+      'Menyebut nama Tuhan melalui lagu dan cerita',
+      'Menghormati guru dan orang tua dengan sikap santun',
+      'Berbagi makanan atau mainan dengan teman',
+      'Mengucapkan terima kasih dan maaf dalam interaksi sehari-hari',
+      'Merapikan mainan setelah digunakan tanpa diminta',
+      'Menghargai teman yang berbeda agama dan budaya',
+      'Mengikuti kegiatan ibadah sesuai ajaran agama dengan bimbingan',
+      'Menolong teman yang membutuhkan bantuan',
+      'Menjaga kebersihan diri sebagai wujud rasa syukur'
+    ]
+  },
+  'Fisik-Motorik': {
+    cp: [
+      'Anak menunjukkan kemampuan motorik kasar yang terkoordinasi dan seimbang',
+      'Anak menunjukkan kemampuan motorik halus untuk kegiatan sehari-hari',
+      'Anak mampu menjaga kesehatan dan kebersihan diri secara mandiri',
+      'Anak menggunakan alat permainan dan media dengan aman',
+      'Anak menunjukkan kekuatan dan ketahanan tubuh melalui aktivitas fisik',
+      'Anak mengenal gerakan tubuh yang teratur dan terkontrol',
+      'Anak menunjukkan kemampuan koordinasi mata dan tangan',
+      'Anak terbiasa melakukan aktivitas fisik yang menyehatkan'
+    ],
+    tp: [
+      'Melompat dengan dua kaki secara seimbang',
+      'Berlari tanpa kehilangan keseimbangan',
+      'Berjalan di atas garis lurus dengan stabil',
+      'Menangkap bola dengan kedua tangan',
+      'Menaiki dan menuruni tangga dengan kaki bergantian',
+      'Menggunting mengikuti garis dengan rapi',
+      'Meremas dan membentuk kertas atau adonan',
+      'Memegang alat tulis dengan pegangan yang tepat',
+      'Mencuci tangan sebelum dan sesudah makan',
+      'Menjaga kebersihan diri setelah bermain'
+    ]
+  },
+  Kognitif: {
+    cp: [
+      'Anak menunjukkan rasa ingin tahu melalui eksplorasi lingkungan sekitar',
+      'Anak mengenal konsep bilangan, lambang bilangan, dan operasi sederhana',
+      'Anak mengenal bentuk geometri, warna, dan ukuran',
+      'Anak mampu mengelompokkan dan membandingkan benda',
+      'Anak mengenal pola dan hubungan sebab-akibat sederhana',
+      'Anak mampu memecahkan masalah sederhana dalam permainan',
+      'Anak mengenal konsep ruang dan waktu dalam kegiatan sehari-hari',
+      'Anak mampu mengurutkan dan menyusun benda secara logis'
+    ],
+    tp: [
+      'Mengelompokkan benda berdasarkan warna, bentuk, atau ukuran',
+      'Menyebut urutan angka 1 sampai 10 dengan benar',
+      'Menghitung benda satu sampai sepuluh',
+      'Menyusun balok menjadi bangunan sederhana',
+      'Menyelesaikan puzzle sederhana dengan percaya diri',
+      'Mengurutkan benda dari kecil ke besar atau sebaliknya',
+      'Mengenal dan melanjutkan pola sederhana seperti merah-biru-merah',
+      'Membedakan konsep banyak-sedikit dan besar-kecil',
+      'Mengenal bentuk lingkaran, segitiga, dan persegi',
+      'Mencari solusi sederhana saat menghadapi masalah permainan'
+    ]
+  },
+  Bahasa: {
+    cp: [
+      'Anak menyimak dan memahami informasi dari percakapan atau cerita',
+      'Anak mengungkapkan gagasan dan perasaan secara lisan',
+      'Anak menunjukkan minat dan kemampuan mengenal huruf serta simbol',
+      'Anak mampu bercerita dan mengekspresikan diri dengan kata-kata',
+      'Anak mengenal kosakata baru dan menggunakannya dalam konteks',
+      'Anak menunjukkan kemampuan berkomunikasi secara santun',
+      'Anak memahami instruksi sederhana dan melaksanakannya',
+      'Anak mengenal bahwa tulisan memiliki makna'
+    ],
+    tp: [
+      'Menjawab pertanyaan sederhana tentang cerita yang didengar',
+      'Menceritakan kembali pengalaman bermain dengan runtut',
+      'Menyebut nama benda dan orang di sekitar',
+      'Mengikuti instruksi dua langkah dengan benar',
+      'Menyanyikan lagu sederhana sambil mengikuti lirik',
+      'Mengenal huruf awal nama sendiri',
+      'Menyebutkan huruf-huruf yang dikenal di lingkungan',
+      'Menirukan bunyi huruf dengan jelas',
+      'Bertanya dan menjawab dengan kalimat sederhana',
+      'Mendengarkan teman berbicara tanpa memotong'
+    ]
+  },
+  'Sosial-Emosional': {
+    cp: [
+      'Anak mengenal dan mengelola emosi secara sederhana',
+      'Anak berinteraksi positif dengan teman sebaya dan orang dewasa',
+      'Anak menunjukkan sikap kooperatif, berbagi, dan bergantian',
+      'Anak menunjukkan kemandirian dan tanggung jawab sesuai usia',
+      'Anak mengenal dan menghargai perbedaan',
+      'Anak menunjukkan rasa percaya diri dalam kegiatan',
+      'Anak menaati aturan sederhana di lingkungan bermain',
+      'Anak mampu menyelesaikan konflik sederhana dengan bimbingan'
+    ],
+    tp: [
+      'Mengantre menunggu giliran dengan sabar',
+      'Meminta bantuan dengan kata-kata yang santun',
+      'Bermain bersama teman tanpa berebut mainan',
+      'Mengungkapkan perasaan dengan tenang dan jelas',
+      'Berbagi mainan atau makanan dengan teman',
+      'Membantu teman yang mengalami kesulitan',
+      'Merapikan alat bermain setelah digunakan',
+      'Menaati aturan permainan yang disepakati',
+      'Menunjukkan rasa percaya diri saat tampil di depan teman',
+      'Menghargai perbedaan pendapat dengan teman'
+    ]
+  },
+  Seni: {
+    cp: [
+      'Anak menunjukkan minat dan kemampuan mengekspresikan diri melalui seni',
+      'Anak mengenal berbagai bentuk karya seni seperti gambar, lagu, gerak, dan kriya',
+      'Anak mampu berkarya seni menggunakan berbagai media dan bahan',
+      'Anak menunjukkan kreativitas dalam menghasilkan karya sederhana',
+      'Anak menikmati dan menghargai karya seni sendiri serta orang lain',
+      'Anak mengekspresikan perasaan melalui musik, gerak, dan gambar',
+      'Anak mengenal keindahan dan estetika dalam kegiatan sehari-hari',
+      'Anak menunjukkan kemampuan mengolah bahan bekas menjadi karya'
+    ],
+    tp: [
+      'Menggambar bebas dengan ide dan imajinasi sendiri',
+      'Mewarnai gambar dengan rapi dan sesuai warna',
+      'Membuat kolase dari kertas atau bahan bekas',
+      'Membentuk bentuk sederhana dari adonan atau tanah liat',
+      'Menari mengikuti irama musik dengan gembira',
+      'Menyanyikan lagu dengan ekspresi dan gerakan',
+      'Memainkan alat musik sederhana secara ritmis',
+      'Memajang dan menceritakan hasil karya sendiri',
+      'Menghargai hasil karya teman dengan memberi pujian',
+      'Berkreasi menggunakan media yang tersedia di lingkungan'
+    ]
+  }
+};
+
 const els = {
   progressLinks: document.querySelectorAll('.step-link'),
   stepCards: document.querySelectorAll('.step-card'),
@@ -79,11 +230,17 @@ const els = {
   hintsList: document.getElementById('hintsList'),
   cetakBtn: document.getElementById('cetakBtn'),
   baruBtn: document.getElementById('baruBtn'),
+  cpSelect: document.getElementById('cp'),
+  cpManual: document.getElementById('cpManual'),
+  tpSelect: document.getElementById('tp'),
+  tpManual: document.getElementById('tpManual'),
   inputs: {
     nama: document.getElementById('nama'),
     usia: document.getElementById('usia'),
     tanggalJam: document.getElementById('tanggalJam'),
     konteks: document.getElementById('konteks'),
+    aspek: document.getElementById('aspek'),
+    indikator: document.getElementById('indikator'),
     catatan: document.getElementById('catatan')
   }
 };
@@ -112,9 +269,60 @@ function applyStateToUI() {
   els.inputs.usia.value = state.usia || '';
   els.inputs.tanggalJam.value = state.tanggalJam || '';
   els.inputs.konteks.value = state.konteks || '';
+  els.inputs.aspek.value = state.aspek || '';
+  populatePlanning(state.aspek);
+  setChoice(els.cpSelect, els.cpManual, state.cp);
+  setChoice(els.tpSelect, els.tpManual, state.tp);
+  els.inputs.indikator.value = state.indikator || '';
   els.inputs.catatan.value = state.catatan || '';
   selectTechnik(state.teknik);
   showStep(state.step);
+}
+
+function populateChoiceSelect(select, items, placeholder) {
+  select.innerHTML = '';
+  const ph = document.createElement('option');
+  ph.value = '';
+  ph.textContent = placeholder;
+  select.appendChild(ph);
+  (items || []).forEach(text => {
+    const opt = document.createElement('option');
+    opt.value = text;
+    opt.textContent = text;
+    select.appendChild(opt);
+  });
+  const custom = document.createElement('option');
+  custom.value = '__custom';
+  custom.textContent = 'Lainnya (tulis sendiri)';
+  select.appendChild(custom);
+}
+
+function populatePlanning(aspek) {
+  const data = PLANNING[aspek] || { cp: [], tp: [] };
+  populateChoiceSelect(els.cpSelect, data.cp, 'Pilih Capaian Pembelajaran (CP)');
+  populateChoiceSelect(els.tpSelect, data.tp, 'Pilih Tujuan Pembelajaran (TP)');
+}
+
+function setChoice(select, manual, value) {
+  manual.value = '';
+  manual.hidden = true;
+  if (!value) {
+    select.value = '';
+    return;
+  }
+  const matched = Array.from(select.options).some(opt => opt.value === value);
+  if (matched) {
+    select.value = value;
+  } else {
+    select.value = '__custom';
+    manual.hidden = false;
+    manual.value = value;
+  }
+}
+
+function getChoice(select, manual) {
+  if (select.value === '__custom') return manual.value.trim();
+  return select.value;
 }
 
 function selectTechnik(key) {
@@ -172,6 +380,10 @@ function readForm() {
     usia: els.inputs.usia.value.trim(),
     tanggalJam: els.inputs.tanggalJam.value.trim(),
     konteks: els.inputs.konteks.value.trim(),
+    aspek: els.inputs.aspek.value.trim(),
+    cp: getChoice(els.cpSelect, els.cpManual),
+    tp: getChoice(els.tpSelect, els.tpManual),
+    indikator: els.inputs.indikator.value.trim(),
     teknik: state.teknik,
     catatan: els.inputs.catatan.value.trim()
   };
@@ -183,6 +395,9 @@ function bindInputs() {
     els.inputs.usia,
     els.inputs.tanggalJam,
     els.inputs.konteks,
+    els.inputs.indikator,
+    els.cpManual,
+    els.tpManual,
     els.inputs.catatan
   ];
   inputs.forEach(input => {
@@ -190,6 +405,28 @@ function bindInputs() {
       Object.assign(state, readForm());
       saveDraft();
     });
+  });
+
+  els.inputs.aspek.addEventListener('change', () => {
+    populatePlanning(els.inputs.aspek.value);
+    setChoice(els.cpSelect, els.cpManual, '');
+    setChoice(els.tpSelect, els.tpManual, '');
+    Object.assign(state, readForm());
+    saveDraft();
+  });
+
+  els.cpSelect.addEventListener('change', () => {
+    els.cpManual.hidden = els.cpSelect.value !== '__custom';
+    if (els.cpManual.hidden) els.cpManual.value = '';
+    Object.assign(state, readForm());
+    saveDraft();
+  });
+
+  els.tpSelect.addEventListener('change', () => {
+    els.tpManual.hidden = els.tpSelect.value !== '__custom';
+    if (els.tpManual.hidden) els.tpManual.value = '';
+    Object.assign(state, readForm());
+    saveDraft();
   });
 
   document.querySelectorAll('.tech-card').forEach(card => {
@@ -206,6 +443,10 @@ function bindInputs() {
     state.usia = '';
     state.tanggalJam = '';
     state.konteks = '';
+    state.aspek = '';
+    state.cp = '';
+    state.tp = '';
+    state.indikator = '';
     state.catatan = '';
     applyStateToUI();
   });
@@ -252,6 +493,10 @@ function bindInputs() {
     state.usia = '';
     state.tanggalJam = '';
     state.konteks = '';
+    state.aspek = '';
+    state.cp = '';
+    state.tp = '';
+    state.indikator = '';
     state.catatan = '';
     state.teknik = 'anekdot';
     saveDraft();
@@ -333,8 +578,12 @@ function downloadExcel() {
     ['Tanggal & Jam', tgl],
     ['Konteks Kegiatan / Sentra', state.konteks],
     ['Teknik Asesmen', tech.label],
+    ['Aspek STPPA', state.aspek],
+    ['Capaian Pembelajaran (CP)', state.cp],
+    ['Tujuan Pembelajaran (TP)', state.tp],
+    ['Indikator STPPA', state.indikator],
     ['Catatan Observasi', state.catatan]
-  ];
+  ].filter(([, value]) => value);
 
   const table = rows.map(([k, v]) =>
     `<tr><td><b>${escapeHtml(k)}</b></td><td>${escapeHtml(v || '-').replace(/\n/g, '<br>')}</td></tr>`
@@ -359,6 +608,13 @@ function renderRapor() {
     day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
   }) : '-';
 
+  const planning = [
+    ['Aspek STPPA', state.aspek],
+    ['Capaian Pembelajaran (CP)', state.cp],
+    ['Tujuan Pembelajaran (TP)', state.tp],
+    ['Indikator STPPA', state.indikator]
+  ].filter(([, value]) => value);
+
   els.raporMeta.textContent = `${state.nama} · ${state.usia} · ${tgl} · Teknik: ${tech.label}`;
 
   els.raporBody.innerHTML = `
@@ -367,6 +623,7 @@ function renderRapor() {
     <p><strong>Tanggal &amp; Jam:</strong> ${escapeHtml(tgl)}</p>
     <p><strong>Konteks Kegiatan / Sentra:</strong> ${escapeHtml(state.konteks)}</p>
     <p><strong>Teknik Asesmen:</strong> ${escapeHtml(tech.label)}</p>
+    ${planning.map(([label, value]) => `<p><strong>${label}:</strong> ${escapeHtml(value)}</p>`).join('')}
     <p><strong>Catatan Observasi:</strong></p>
     <p>${escapeHtml(state.catatan).replace(/\n/g, '<br>')}</p>
     <hr style="border:none; border-top:1px solid var(--line); margin:20px 0;">
